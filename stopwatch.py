@@ -1,18 +1,33 @@
 from tkinter import *
 from PIL import Image, ImageTk
+from datetime import date
+
 
 
 root = Tk()
 root.geometry("500x500")
 root.title("StopWatch")
+root.protocol("WM_DELETE_WINDOW", root.iconify)
+
+root.bind('<Escape>', lambda e: root.destroy())
+
+
 
 
 img = Image.open("clock.png")
 img = ImageTk.PhotoImage(img)
-
-img_label = Label(image=img)
+img_label = Label(root, image=img)
 img_label.pack()
 
 
+
+
+today_date = date.today()
+date_label = Label(root, text=today_date, relief="solid", width=20, font=("arial", 20, "bold"), bg="grey")
+date_label.place(x=76, y=220)
+
 root.mainloop()
+
+
+
 
